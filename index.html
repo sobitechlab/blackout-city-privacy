@@ -134,7 +134,7 @@
     <header>
       <div class="eyebrow">BLACKOUT CITY · PRIVACY POLICY</div>
       <h1>개인정보처리방침 / Privacy Policy</h1>
-      <div class="meta">시행일 (Effective Date): 2026-10-23 · 최종 수정일 (Last Updated): 2026-10-24</div>
+      <div class="meta">시행일 (Effective Date): 2026-10-23 · 최종 수정일 (Last Updated): 2026-10-25</div>
       <nav class="lang-switch" aria-label="언어 선택">
         <a href="#ko">한국어 (Korean)</a>
         <a href="#en">English</a>
@@ -153,7 +153,7 @@
         <h3>기기에 저장하는 정보</h3>
         <p>스테이지 진행·최소 턴 기록, 배터리 상태, 언어·소리·진동·화면 설정, 제출한 평가·제보의 상태를 기기에 저장합니다. 진행 저장 파일 전체를 서버에 복사하지는 않습니다. 네트워크가 끊기면 분석·제보 전송 대기열도 기기에 저장하고, 앱을 다시 실행하거나 복귀했을 때 재시도합니다. 앱이 완전히 종료된 동안에는 이 대기열을 전송하지 않습니다.</p>
         <h3>플레이 중 자동 전송하는 정보</h3>
-        <p>현재 베타에서는 별도의 제출 버튼을 누르지 않아도 다음 게임 이용 기록이 HTTPS로 <strong>Supabase</strong>에 전송됩니다.</p>
+        <p>앱은 별도의 제출 버튼을 누르지 않아도 다음 게임 이용 기록이 HTTPS로 <strong>Supabase</strong>에 전송됩니다.</p>
         <ul>
           <li>앱 실행·세션 시작/종료, 스테이지 입장·종료·첫/반복 클리어, 이야기 시작·종료</li>
           <li>스테이지·규칙 버전, 게임 모드, 앱 버전·언어, 시도 시각과 결과, 턴·이동·능력·되돌리기·힌트 사용 횟수 및 활성 플레이 시간 등의 요약</li>
@@ -167,8 +167,8 @@
 
       <section>
         <h2>3. Android 광고와 Google</h2>
-        <p>현재 APK는 <strong>Google 테스트 광고만</strong> 사용하며 실제 수익 광고는 활성화하지 않았습니다. 전체 힌트와 배터리 충전에는 보상형 광고, 두 번째 도시부터 새로운 이야기 클리어에는 전면광고를 사용합니다. 배너 광고는 표시하거나 요청하지 않습니다.</p>
-        <p>테스트 광고를 사용하더라도 Google Mobile Ads SDK 및 동의 관리 기능이 동작합니다. Google의 설명에 따르면 이 SDK는 광고 제공·분석·부정 사용 방지를 위해 IP 주소, 앱 이용 상호작용, 진단 정보, 광고 ID를 포함할 수 있는 기기 식별자를 자동으로 수집·공유할 수 있습니다. 이 정보는 Google의 정책에 따라 처리됩니다. 앱은 광고 관련 동의 상태를 확인하고 필요한 경우 동의 화면을 표시합니다. 제공되는 경우 앱 설정에서 광고 개인정보 선택 화면을 다시 열 수 있습니다.</p>
+        <p>기존 베타 QA APK는 Google 테스트 광고를 사용합니다. Google Play용 Android 앱은 실제 AdMob 광고 단위를 사용합니다. 전체 힌트와 배터리 충전에는 보상형 광고, 두 번째 도시부터 새로운 이야기 클리어에는 전면광고를 사용합니다. 배너 광고는 표시하거나 요청하지 않습니다.</p>
+        <p>테스트 광고와 실제 광고 모두 Google Mobile Ads SDK 및 동의 관리 기능을 사용합니다. Google의 설명에 따르면 이 SDK는 광고 제공·분석·부정 사용 방지를 위해 IP 주소, 앱 이용 상호작용, 진단 정보, 광고 ID를 포함할 수 있는 기기 식별자를 자동으로 수집·공유할 수 있습니다. 이 정보는 Google의 정책에 따라 처리됩니다. 앱은 광고 관련 동의 상태를 확인하고 필요한 경우 동의 화면을 표시합니다. 제공되는 경우 앱 설정에서 광고 개인정보 선택 화면을 다시 열 수 있습니다.</p>
         <p>이 방침의 Google 광고 데이터와 2절의 Supabase 게임 분석 데이터는 서로 다른 처리 경로입니다. 게임 운영자는 Supabase에 저장한 평가·제보 내용이나 플레이 요약을 Google에 광고 타깃팅 자료로 보내지 않습니다. 자세한 내용은 <a href="https://developers.google.com/admob/android/privacy/play-data-disclosure">Google 광고 SDK 데이터 안내</a>와 <a href="https://policies.google.com/privacy">Google 개인정보처리방침</a>을 참고해 주세요.</p>
       </section>
 
@@ -179,7 +179,7 @@
           <thead><tr><th>서비스</th><th>처리 내용</th></tr></thead>
           <tbody>
             <tr><td>Supabase</td><td>게임 분석 이벤트·집계·평가·제보의 수신 및 데이터베이스 보관. 서비스 제공 과정에서 연결 정보도 처리될 수 있습니다. <a href="https://supabase.com/privacy">Supabase 개인정보 안내</a></td></tr>
-            <tr><td>Google Mobile Ads / UMP</td><td>Android 테스트 광고 제공, 광고 관련 데이터·동의 정보 처리. <a href="https://policies.google.com/privacy">Google 개인정보처리방침</a></td></tr>
+            <tr><td>Google Mobile Ads / UMP</td><td>Android 테스트·실제 광고 제공, 광고 관련 데이터·동의 정보 처리. <a href="https://policies.google.com/privacy">Google 개인정보처리방침</a></td></tr>
           </tbody>
         </table>
       </section>
@@ -219,7 +219,7 @@
         <h3>Stored on your device</h3>
         <p>The App stores stage progress and best turns, battery status, language, audio, vibration and display settings, and the status of submitted feedback. It does not copy your entire progress save to the server. When offline, it stores analytics and feedback in a local queue and retries when the App is reopened or resumed. It does not upload that queue while fully closed.</p>
         <h3>Automatically uploaded during play</h3>
-        <p>In the current beta, the App sends these gameplay records to <strong>Supabase</strong> over HTTPS without requiring you to press a submit button:</p>
+        <p>The App sends these gameplay records to <strong>Supabase</strong> over HTTPS without requiring you to press a submit button:</p>
         <ul>
           <li>App launches and sessions; stage starts, ends and first/repeat clears; story starts and ends.</li>
           <li>Stage and rules version, game mode, App version and language, attempt time and outcome, and summaries such as turns, moves, abilities, undos, hints and active play time.</li>
@@ -233,8 +233,8 @@
 
       <section>
         <h2>3. Android ads and Google</h2>
-        <p>The current APK uses <strong>Google test ads only</strong>; live revenue ads are disabled. Rewarded ads are used for a final full hint and battery recharge. An interstitial is used after a new story clear from the second city onward. Banner ads are neither requested nor displayed.</p>
-        <p>The Google Mobile Ads SDK and consent features still run with test ads. Google says the SDK may automatically collect and share IP address, app interactions, diagnostic information, and device identifiers that can include advertising ID for advertising, analytics and fraud prevention. Google processes that data under its own policies. The App checks ad consent status, shows a consent form when required, and lets you reopen ad privacy choices in settings when available.</p>
+        <p>Earlier beta QA APKs use Google test ads. The Android app for Google Play uses live AdMob ad units. Rewarded ads are used for a final full hint and battery recharge. An interstitial is used after a new story clear from the second city onward. Banner ads are neither requested nor displayed.</p>
+        <p>The Google Mobile Ads SDK and consent features run with both test and live ads. Google says the SDK may automatically collect and share IP address, app interactions, diagnostic information, and device identifiers that can include advertising ID for advertising, analytics and fraud prevention. Google processes that data under its own policies. The App checks ad consent status, shows a consent form when required, and lets you reopen ad privacy choices in settings when available.</p>
         <p>Google ad data is separate from the Supabase gameplay data in section 2. We do not send Supabase ratings, report text or gameplay summaries to Google for ad targeting. See <a href="https://developers.google.com/admob/android/privacy/play-data-disclosure">Google's Mobile Ads SDK disclosure</a> and <a href="https://policies.google.com/privacy">Google Privacy Policy</a>.</p>
       </section>
 
@@ -245,7 +245,7 @@
           <thead><tr><th>Service</th><th>Processing</th></tr></thead>
           <tbody>
             <tr><td>Supabase</td><td>Receives and stores game events, aggregates, ratings and reports. Connection data may also be processed to provide the service. <a href="https://supabase.com/privacy">Supabase privacy notice</a></td></tr>
-            <tr><td>Google Mobile Ads / UMP</td><td>Serves Android test ads and processes ad-related data and consent information. <a href="https://policies.google.com/privacy">Google Privacy Policy</a></td></tr>
+            <tr><td>Google Mobile Ads / UMP</td><td>Serves Android test and live ads and processes ad-related data and consent information. <a href="https://policies.google.com/privacy">Google Privacy Policy</a></td></tr>
           </tbody>
         </table>
       </section>
