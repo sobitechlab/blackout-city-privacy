@@ -153,16 +153,15 @@
         <h3>기기에 저장하는 정보</h3>
         <p>스테이지 진행·최소 턴 기록, 배터리 상태, 언어·소리·진동·화면 설정, 제출한 평가·제보의 상태를 기기에 저장합니다. 진행 저장 파일 전체를 서버에 복사하지는 않습니다. 네트워크가 끊기면 분석·제보 전송 대기열도 기기에 저장하고, 앱을 다시 실행하거나 복귀했을 때 재시도합니다. 앱이 완전히 종료된 동안에는 이 대기열을 전송하지 않습니다.</p>
         <h3>플레이 중 자동 전송하는 정보</h3>
-        <p>앱은 별도의 제출 버튼을 누르지 않아도 다음 게임 이용 기록이 HTTPS로 <strong>Supabase</strong>에 전송됩니다.</p>
+        <p>현행 앱은 별도의 제출 버튼 없이 기본 운영 횟수와 완전 복구 기록을 HTTPS로 <strong>Supabase</strong>에 전송합니다.</p>
         <ul>
-          <li>앱 실행·세션 시작/종료, 스테이지 입장·종료·첫/반복 클리어, 이야기 시작·종료</li>
-          <li>스테이지·규칙 버전, 게임 모드, 앱 버전·언어, 시도 시각과 결과, 턴·이동·능력·되돌리기·힌트 사용 횟수 및 활성 플레이 시간 등의 요약</li>
-          <li>광고 요청·표시·닫기·보상·실패, 배터리 사용·차단·광고 충전 결과, 전송 대기열의 상태</li>
-          <li>같은 앱 설치에서 발생한 기록을 연결하고 중복 수신을 막기 위한 무작위 설치 토큰, 세션·시도·요청 ID 및 순번. 서버의 설치 식별자는 원본 토큰이 아닌 SHA-256 해시입니다.</li>
+          <li>앱 실행, 스테이지 입장·성공·실패, 힌트 공개, 광고 요청·표시·보상·불러오기 실패, 배터리 부족 횟수</li>
+          <li>집계에 필요한 스테이지·편성·문제 버전과 결과, 완전 복구의 턴수·선택 시설 복구 여부</li>
+          <li>중복 접수 방지를 위한 무작위 설치 토큰, 제한된 시도·요청 ID와 처리 순번. 서버의 설치 식별자는 원본 토큰이 아닌 해시입니다.</li>
         </ul>
-        <p>일반 플레이 요약 분석에는 화면 터치 좌표나 전체 이동 경로를 포함하지 않습니다. 다만 아래의 완전 복구 최고 기록에는 해당 클리어의 행동 순서가 자동 전송됩니다. 서버 기록은 한 설치의 활동을 이어 볼 수 있으므로 완전히 익명인 정보로 취급하지 않습니다. 앱의 분석 코드가 이메일·GPS 위치·광고 ID를 Supabase 이벤트 항목으로 보내지는 않습니다.</p>
+        <p>서버는 일반 플레이의 원본 이벤트나 개인별 전체 시도·스테이지 이력을 보관하지 않습니다. 구버전 앱의 기존 대기열도 호환 접수하지만, 더 이상 수집하지 않는 세션·이야기·상세 행동 이벤트는 처리 후 버립니다. 앱의 분석 코드는 이메일·GPS 위치·광고 ID를 Supabase 항목으로 보내지 않습니다.</p>
         <h3>완전 복구 최고 기록</h3>
-        <p>다른 플레이어와 완전 복구 턴수를 비교하기 위해 익명 설치 식별자, 스테이지·편성·문제 버전, 클리어 턴수, 선택 시설의 복구 여부와 해당 클리어의 행동 순서를 자동 전송합니다. 서버는 행동 순서를 재생해 기록을 검증합니다. 다른 플레이어에게는 집계된 최저 턴수만 표시하며 설치 식별자와 행동 경로는 공개하지 않습니다. 기기 기록은 먼저 저장하고 연결이 가능할 때 전송합니다. 재설치한 기기는 이전 설치와 자동 연결되지 않습니다.</p>
+        <p>다른 플레이어와 완전 복구 턴수를 비교하기 위해 설치 식별자, 스테이지·편성·문제 버전, 클리어 턴수, 선택 시설 복구 여부와 해당 클리어의 행동 순서를 전송합니다. 서버는 해법을 재생해 검증한 뒤 각 스테이지 기록 구분별로 서로 다른 설치의 상위 기록 최대 2개와 해법만 유지합니다. 다른 플레이어에게는 최저 턴수만 표시하며 식별자와 행동 경로는 공개하지 않습니다. 개인 최고와 전체 진행 파일은 기기에 유지합니다. 재설치한 기기는 이전 설치와 자동 연결되지 않습니다.</p>
         <h3>이용자가 제출하는 평가·제보</h3>
         <p>실험실에서 평가를 제출하면 별점·난이도·익숙함·의견과 해당 스테이지·편성·턴 등의 상황 정보가 전송됩니다. 문제를 제보하면 이용자가 작성한 기대 결과·실제 결과·분류와 상황 정보가 전송됩니다. 재현 자료 첨부를 선택한 경우에만 행동 경로·턴 상태 등 상세 자료를 함께 보냅니다. 자유 입력란에는 이름이나 연락처 같은 개인정보를 적지 말아 주세요.</p>
       </section>
@@ -176,11 +175,11 @@
 
       <section>
         <h2>4. 이용 목적 및 외부 서비스</h2>
-        <p>플레이 통계는 접속·재방문·스테이지 난이도·힌트·광고/배터리 기능의 작동을 파악하고 게임을 개선하는 데 사용합니다. 평가와 제보는 스테이지 조정 및 오류 재현·수정에 사용합니다. 전송은 HTTPS(TLS)로 암호화됩니다.</p>
+        <p>집계 통계는 앱 실행 규모·스테이지 난이도·힌트·광고/배터리 기능의 작동을 파악하고 게임을 개선하는 데 사용합니다. 평가와 제보는 스테이지 조정 및 오류 재현·수정에 사용합니다. 전송은 HTTPS(TLS)로 암호화됩니다.</p>
         <table>
           <thead><tr><th>서비스</th><th>처리 내용</th></tr></thead>
           <tbody>
-            <tr><td>Supabase</td><td>게임 분석 이벤트·집계·평가·제보의 수신 및 데이터베이스 보관. 서비스 제공 과정에서 연결 정보도 처리될 수 있습니다. <a href="https://supabase.com/privacy">Supabase 개인정보 안내</a></td></tr>
+            <tr><td>Supabase</td><td>최소 운영 이벤트의 수신·집계와 평가·제보의 데이터베이스 보관. 서비스 제공 과정에서 연결 정보도 처리될 수 있습니다. <a href="https://supabase.com/privacy">Supabase 개인정보 안내</a></td></tr>
             <tr><td>Google Mobile Ads / UMP</td><td>Android 테스트·실제 광고 제공, 광고 관련 데이터·동의 정보 처리. <a href="https://policies.google.com/privacy">Google 개인정보처리방침</a></td></tr>
           </tbody>
         </table>
@@ -190,9 +189,10 @@
         <h2>5. 보관·삭제 및 이용자 요청</h2>
         <ul>
           <li><strong>기기 저장 정보:</strong> 앱 삭제 또는 앱 데이터 삭제 시 기기 내 진행·설정·대기열이 삭제됩니다. 이미 서버로 전송된 정보는 자동 삭제되지 않습니다.</li>
-          <li><strong>서버의 원본 이벤트:</strong> 정기 작업으로 수신 후 30일이 지난 기록을 정리합니다(서비스 일시중지 시 작업 재개까지 지연될 수 있습니다). 종료된 시도의 상세 JSON도 같은 방식으로 축약하지만 시도 ID와 결과는 남을 수 있습니다. 완전 복구 기록의 원본 제출 이벤트도 이 정리 대상입니다.</li>
-          <li><strong>완전 복구 최고 기록:</strong> 설치·문제·버전별 최고 턴수와 검증된 행동 경로, 중복 전송 방지 영수증은 기록 비교 서비스를 운영하는 동안 별도로 보관합니다. 열람·삭제 요청은 아래 연락처로 보내 주세요.</li>
-          <li><strong>집계·평가·제보 등:</strong> 일별 통계, 설치별 클리어·힌트 기록, 평가·제보 및 중복 방지 정보는 게임 운영·품질 개선에 필요한 기간 동안 보관하고, 목적 종료 또는 서비스 종료 시 삭제·비식별화합니다. 법령상 보존 의무가 있으면 해당 기간을 따릅니다.</li>
+          <li><strong>운영 집계:</strong> 스테이지 누적 횟수는 서비스 운영 중 유지합니다. 일별 집계는 한국시간 기준 오늘을 포함한 최근 7일을 유지하고 이전 자료는 월별로 합칩니다. 월별 집계는 최근 24개월 유지합니다. 일반 플레이의 원본 이벤트와 개인별 전체 이력은 서버에 보관하지 않습니다.</li>
+          <li><strong>완전 복구 최고 기록:</strong> 스테이지 기록 구분별 서로 다른 설치의 상위 기록 최대 2개와 검증 해법을 유지합니다. 20개 미만의 서로 다른 설치가 클리어한 스테이지에서는 편입 검토를 위해 설치 식별자를 보관하며, 20개에 도달하면 명단을 삭제하고 도달 여부만 남깁니다.</li>
+          <li><strong>평가·제보:</strong> 설치·스테이지별 최신 평가만 유지하고 평가 자유 의견은 90일 뒤 삭제합니다. 문제 제보 본문은 처리에 필요한 기간 동안, 선택한 재현 첨부는 7일 동안 보관합니다.</li>
+          <li><strong>중복 접수 방지:</strong> 설치 해시·처리 순번과 제한된 최근 접수 상태를 유지합니다. 처리된 거절 영수증은 현행 앱이 저장된 확인 순번을 보내면 정리합니다. 구버전 앱에서 확인 순번을 보내지 않는 동안에는 안전한 재시도를 위해 영수증이 더 오래 남을 수 있습니다.</li>
         </ul>
         <p>전송된 정보의 확인·삭제를 원하면 아래 이메일로 요청해 주세요. 계정이 없는 게임이므로 요청한 기록을 식별·확인할 수 있는 정보를 안내받아 가능한 범위에서 처리합니다. 앱 삭제만으로 서버 기록의 삭제를 요청한 것으로 처리되지는 않습니다. Google이 처리하는 광고 정보와 선택은 Google의 안내 및 기기 광고 설정을 이용해 주세요.</p>
       </section>
@@ -222,16 +222,15 @@
         <h3>Stored on your device</h3>
         <p>The App stores stage progress and best turns, battery status, language, audio, vibration and display settings, and the status of submitted feedback. It does not copy your entire progress save to the server. When offline, it stores analytics and feedback in a local queue and retries when the App is reopened or resumed. It does not upload that queue while fully closed.</p>
         <h3>Automatically uploaded during play</h3>
-        <p>The App sends these gameplay records to <strong>Supabase</strong> over HTTPS without requiring you to press a submit button:</p>
+        <p>The current App sends basic operating counts and full-restoration records to <strong>Supabase</strong> over HTTPS without requiring a submit button.</p>
         <ul>
-          <li>App launches and sessions; stage starts, ends and first/repeat clears; story starts and ends.</li>
-          <li>Stage and rules version, game mode, App version and language, attempt time and outcome, and summaries such as turns, moves, abilities, undos, hints and active play time.</li>
-          <li>Ad requests, impressions, dismissal, reward and failure; battery use, blocking and ad recharge; upload-queue health.</li>
-          <li>Random installation token and session, attempt and request IDs and sequence numbers to link events from one installation and prevent duplicates. The server stores a SHA-256 hash of the installation token, not the original token, as its installation identifier.</li>
+          <li>App launches; stage entries, clears and failures; hint reveals; ad requests, impressions, rewards and load failures; and battery-block counts.</li>
+          <li>Stage, loadout and puzzle revision needed for aggregation, outcomes, and full-restoration turns and optional-facility completion.</li>
+          <li>A random installation token, bounded attempt and request IDs, and processing sequence numbers to prevent duplicate delivery. The server stores a hash rather than the raw installation token as its identifier.</li>
         </ul>
-        <p>Ordinary gameplay summary analytics do not include tap coordinates or a full move-by-move path. The full-restoration best-score feature below automatically sends the action sequence of a qualifying clear. Because records can be linked within one installation, we do not describe them as completely anonymous. The App's analytics code does not send email, GPS location or advertising ID as Supabase event fields.</p>
+        <p>The server does not retain ordinary raw gameplay events or lifetime per-installation attempt and stage histories. Older App versions can submit their existing queues through the compatible endpoint, but obsolete session, story and detailed-behavior events are discarded after processing. The App's analytics code does not send email, GPS location or advertising ID to Supabase.</p>
         <h3>Full-restoration best scores</h3>
-        <p>To compare full-restoration turn counts, the App automatically sends a pseudonymous installation identifier, stage, loadout and puzzle revision, clear turn count, optional-facility completion, and the action sequence of that clear. The server replays the actions to validate the score. Other players see only aggregate minimum turn counts; installation identifiers and action paths are not public. Records are saved on the device first and sent when connectivity is available. A reinstallation is not automatically linked to the previous installation.</p>
+        <p>For full-restoration comparisons, the App sends a pseudonymous installation identifier, stage, loadout and puzzle revision, clear turns, optional-facility completion, and the winning action sequence. The server replays the solution for validation and retains at most two different installations' leading records and validated paths per stage bucket. Other players see minimum turn counts only, never identifiers or paths. Personal bests and full progress files remain on the device. A reinstallation is not automatically linked to the previous installation.</p>
         <h3>Ratings and reports you submit</h3>
         <p>A Laboratory rating sends stars, difficulty, familiarity, your note and related stage, loadout and turn context. A bug report sends the category, expected and actual behavior you enter, plus context. Detailed replay data, such as moves and turn state, is sent only if you choose to attach it. Please avoid entering names or contact details in free-text fields.</p>
       </section>
@@ -245,11 +244,11 @@
 
       <section>
         <h2>4. Purposes and service providers</h2>
-        <p>We use gameplay statistics to understand launches, return visits, stage difficulty, hints, and how ad and battery features work, and to improve the game. We use ratings and reports to adjust stages and reproduce and fix issues. Transfers use HTTPS (TLS).</p>
+        <p>We use aggregate statistics to understand launch volume, stage difficulty, hints, and how ad and battery features work, and to improve the game. We use ratings and reports to adjust stages and reproduce and fix issues. Transfers use HTTPS (TLS).</p>
         <table>
           <thead><tr><th>Service</th><th>Processing</th></tr></thead>
           <tbody>
-            <tr><td>Supabase</td><td>Receives and stores game events, aggregates, ratings and reports. Connection data may also be processed to provide the service. <a href="https://supabase.com/privacy">Supabase privacy notice</a></td></tr>
+            <tr><td>Supabase</td><td>Receives basic operating events and stores aggregates, ratings and reports. Connection data may also be processed to provide the service. <a href="https://supabase.com/privacy">Supabase privacy notice</a></td></tr>
             <tr><td>Google Mobile Ads / UMP</td><td>Serves Android test and live ads and processes ad-related data and consent information. <a href="https://policies.google.com/privacy">Google Privacy Policy</a></td></tr>
           </tbody>
         </table>
@@ -259,9 +258,10 @@
         <h2>5. Retention, deletion and requests</h2>
         <ul>
           <li><strong>On-device data:</strong> Uninstalling the App or clearing its data removes local progress, settings and queued uploads. It does not automatically erase records already received by the server.</li>
-          <li><strong>Raw server events:</strong> A scheduled job removes records older than 30 days after receipt (cleanup may be delayed while the service is paused). Detailed JSON for completed attempts is reduced in the same way, while attempt IDs and outcomes may remain. Raw full-restoration score submissions follow this cleanup schedule.</li>
-          <li><strong>Full-restoration best scores:</strong> Per-installation, puzzle and revision best turns and validated action paths, plus deduplication receipts, are retained separately while needed to operate score comparisons. Use the contact below for access or deletion requests.</li>
-          <li><strong>Aggregates, ratings and reports:</strong> Daily statistics, installation-level clear and hint records, ratings, reports and deduplication data are kept while needed to operate and improve the game, then deleted or de-identified when that purpose or the service ends, subject to any legal retention requirement.</li>
+          <li><strong>Operating aggregates:</strong> Cumulative stage counts remain during service operation. Daily aggregates cover the latest seven Korean calendar dates including today; older data rolls into monthly aggregates kept for 24 months. Ordinary raw gameplay events and lifetime per-installation histories are not retained on the server.</li>
+          <li><strong>Full-restoration best scores:</strong> At most two different installations' leading records and validated paths are retained per stage bucket. For a stage with fewer than 20 distinct clearing installations, installation identifiers are retained for qualification review; once the threshold is reached, that list is removed and only the threshold flag remains.</li>
+          <li><strong>Ratings and reports:</strong> Only the latest rating per installation and stage is retained; free-text rating notes expire after 90 days. Issue-report text remains as needed for handling, and optional diagnostic attachments expire after seven days.</li>
+          <li><strong>Duplicate-delivery protection:</strong> Installation hashes, processing cursors and bounded recent receipt states are retained. Processed rejection receipts are cleaned when the current App sends its durably saved acknowledgement cursor. They may remain longer for older App versions that omit it to preserve safe retries.</li>
         </ul>
         <p>To ask about or request deletion of uploaded data, email us below. As the game has no account, we will explain what information is needed to identify and verify the relevant record and act where possible. Uninstalling alone does not submit a server deletion request. For Google ad data and choices, consult Google's notices and your device's ad settings.</p>
       </section>
